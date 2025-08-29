@@ -1,0 +1,78 @@
+[
+  {
+    "EventId": "E10",
+    "Regex": "(?i).*PacketResponder\\s+<\\*>\\s+<\\*>\\s+Exception\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E11",
+    "Regex": "(?i).*PacketResponder\\s+<\\*>\\s+for\\s+block\\s+<\\*>\\s+terminating.*"
+  },
+  {
+    "EventId": "E13",
+    "Regex": "(?i).*Receiving\\s+empty\\s+packet\\s+for\\s+block\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E14",
+    "Regex": "(?i).*Exception\\s+in\\s+receiveBlock\\s+for\\s+block\\s+<\\*>\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E15",
+    "Regex": "(?i).*Changing\\s+block\\s+file\\s+offset\\s+of\\s+block\\s+<\\*>\\s+from\\s+<\\*>\\s+to\\s+<\\*>\\s+meta\\s+file\\s+offset\\s+to\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E16",
+    "Regex": "(?i).*<\\*>:Transmitted\\s+block\\s+<\\*>\\s+to\\s+/<\\*>.*"
+  },
+  {
+    "EventId": "E18",
+    "Regex": "(?i).*<\\*>\\s+Starting\\s+thread\\s+to\\s+transfer\\s+block\\s+<\\*>\\s+to\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E2",
+    "Regex": "(?i).*Verification\\s+succeeded\\s+for\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E21",
+    "Regex": "(?i).*Deleting\\s+block\\s+<\\*>\\s+file\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E22",
+    "Regex": "(?i).*BLOCK\\*\\s+NameSystem\\.allocateBlock:<\\*>.*"
+  },
+  {
+    "EventId": "E25",
+    "Regex": "(?i).*BLOCK\\*\\s+ask\\s+<\\*>\\s+to\\s+replicate\\s+<\\*>\\s+to\\s+datanode\\(s\\)\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E26",
+    "Regex": "(?i).*BLOCK\\*\\s+NameSystem\\.addStoredBlock:\\s+blockMap\\s+updated:\\s+<\\*>\\s+is\\s+added\\s+to\\s+<\\*>\\s+size\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E27",
+    "Regex": "(?i).*BLOCK\\*\\s+NameSystem\\.addStoredBlock:\\s+Redundant\\s+addStoredBlock\\s+request\\s+received\\s+for\\s+<\\*>\\s+on\\s+<\\*>\\s+size\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E3",
+    "Regex": "(?i).*<\\*>\\s+Served\\s+block\\s+<\\*>\\s+to\\s+/<\\*>.*"
+  },
+  {
+    "EventId": "E5",
+    "Regex": "(?i).*Receiving\\s+block\\s+<\\*>\\s+src:\\s+/<\\*>\\s+dest:\\s+/<\\*>.*"
+  },
+  {
+    "EventId": "E6",
+    "Regex": "(?i).*Received\\s+block\\s+<\\*>\\s+src:\\s+/<\\*>\\s+dest:\\s+/<\\*>\\s+of\\s+size\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E7",
+    "Regex": "(?i).*writeBlock\\s+<\\*>\\s+received\\s+exception\\s+<\\*>.*"
+  },
+  {
+    "EventId": "E8",
+    "Regex": "(?i).*PacketResponder\\s+<\\*>\\s+for\\s+block\\s+<\\*>\\s+Interrupted\\..*"
+  },
+  {
+    "EventId": "E9",
+    "Regex": "(?i).*Received\\s+block\\s+<\\*>\\s+of\\s+size\\s+<\\*>\\s+from\\s+/<\\*>.*"
+  }
+]

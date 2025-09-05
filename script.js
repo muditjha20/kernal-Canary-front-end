@@ -1,14 +1,35 @@
 /************** UI helpers **************/
 function showResult(message, type) {
   const box = document.getElementById('resultBox');
-  box.textContent = message;
+  const icon = box.querySelector('i');
+  
+  // Update icon based on result type
+  if (type === 'normal') {
+    icon.className = 'fas fa-check-circle';
+  } else if (type === 'anomaly') {
+    icon.className = 'fas fa-exclamation-triangle';
+  } else if (type === 'error') {
+    icon.className = 'fas fa-exclamation-circle';
+  } else {
+    icon.className = 'fas fa-info-circle';
+  }
+  
+  box.querySelector('span').textContent = message;
   box.className = 'result-box ' + (type || '') + ' show';
 }
 
-// Return candidate “content” slices to try after raw-line matching:
+// Update statistics
+function updateStats(lines, matched, normal, anomaly) {
+  document.getElementById('lineCount').textContent = lines;
+  document.getElementById('eventCount').textContent = matched;
+  document.getElementById('normalCount').textContent = normal;
+  document.getElementById('anomalyCount').textContent = anomaly;
+}
+
+// Return candidate "content" slices to try after raw-line matching:
 // 1) With LineId present (9+ columns): take [6 .. len-3] as Content (strip EventId & Template)
 // 2) Without LineId (8+ columns):     take [5 .. len-3] as Content
-// 3) Fallbacks if above aren’t present: join from [6..] or [5..], finally just the line trimmed
+// 3) Fallbacks if above aren't present: join from [6..] or [5..], finally just the line trimmed
 function candidateSlices(line) {
   const parts = line.split(',');
   const out = [];
@@ -126,9 +147,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     sampleBtn.addEventListener('click', () => {
       const sample = (toggle++ % 2 === 0) ? NORMAL_SAMPLE : ABNORMAL_SAMPLE;
       logInput.value = sample;
+      
+      // Update line count
+      const lines = sample.split('\n').length;
+      document.getElementById('lineCount').textContent = lines;
+      
       showResult((toggle % 2 === 1) ? 'Loaded NORMAL sample' : 'Loaded ABNORMAL sample', 'loading');
     });
   }
+
+  // Update line count when user types
+  logInput.addEventListener('input', () => {
+    const text = logInput.value;
+    const lines = text.split('\n').filter(line => line.trim().length > 0).length;
+    document.getElementById('lineCount').textContent = lines;
+  });
 
   /************** Check Anomaly **************/
   if (checkBtn) {
@@ -154,10 +187,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
 
+      // Update stats
+      updateStats(lines.length, matched, 0, 0);
+
       // Debug info
       console.log('Matched', matched, 'of', lines.length, 'lines. Vector:', vec);
 
       try {
+        showResult('Analyzing logs...', 'loading');
+        
         const res = await fetch('https://kernal-canary.onrender.com/score', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -167,9 +205,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await res.json();
         if (typeof data.is_anomaly === 'boolean') {
           showResult(
-            data.is_anomaly ? '❗ Anomaly detected' : '✅ Normal window',
+            data.is_anomaly ? 'Anomaly detected in log patterns!' : 'No anomalies detected - log patterns appear normal',
             data.is_anomaly ? 'anomaly' : 'normal'
           );
+          updateStats(lines.length, matched, data.is_anomaly ? 0 : 1, data.is_anomaly ? 1 : 0);
         } else {
           showResult('Unexpected API response.', 'error');
         }

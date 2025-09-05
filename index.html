@@ -4,21 +4,69 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kernel Canary++ Log Classifier</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Kernel Canary++</h1>
-    <p class="subtitle">Real-time System Log Anomaly Detector</p>
-
-    <textarea id="logInput" placeholder="Paste your log lines here..."></textarea>
-
-    <div class="buttons">
-      <button id="sampleButton">Load Sample Logs</button>
-      <button id="checkButton">Check Anomaly</button>
+  <div class="app-container">
+    <header>
+      <div class="logo">
+        <i class="fas fa-shield-alt logo-icon"></i>
+        <h1>Kernel Canary++</h1>
+      </div>
+      <p class="subtitle">Advanced Real-time System Log Anomaly Detection</p>
+    </header>
+    
+    <div class="main-content">
+      <section class="input-section">
+        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Log Input</h2>
+        <textarea id="logInput" placeholder="Paste your log lines here..."></textarea>
+        
+        <div class="buttons">
+          <button id="sampleButton" class="btn-secondary">
+            <i class="fas fa-file-alt"></i> Load Sample Logs
+          </button>
+          <button id="checkButton" class="btn-primary">
+            <i class="fas fa-search"></i> Check Anomaly
+          </button>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-value" id="lineCount">0</div>
+            <div class="stat-label">Lines</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="eventCount">0</div>
+            <div class="stat-label">Events Matched</div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="output-section">
+        <h2 class="section-title"><i class="fas fa-chart-line"></i> Analysis Results</h2>
+        
+        <div id="resultBox" class="result-box">
+          <i class="fas fa-info-circle"></i>
+          <span>Analysis results will appear here</span>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-value" id="normalCount">0</div>
+            <div class="stat-label">Normal Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="anomalyCount">0</div>
+            <div class="stat-label">Anomaly Events</div>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <div id="resultBox" class="result-box"></div>
+    
+    <footer>
+      <p>Kernel Canary++ &copy; 2023 | Real-time System Log Analysis</p>
+    </footer>
   </div>
 
   <script src="script.js"></script>

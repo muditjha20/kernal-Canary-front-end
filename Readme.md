@@ -42,6 +42,6 @@ Kernel Canary++ is a lightweight web tool that identifies anomalies in low-level
 ## 👨‍💻 Author
 
 **Mudit Mayank Jha**  
-B.Sc. Computer Science | UWI St. Augustine & University of Richmond  
+B.Sc. Computer Science
 [GitHub](https://github.com/muditjha20)
 
